@@ -3,6 +3,11 @@ Android Recurrence Picker
 
 Google Calendar Recurrence picker
 
+Screenshot
+==========
+
+![Example Image][1]
+
 
 Usage
 =====
@@ -29,3 +34,5 @@ License
 =======
 
     Beerware
+
+ [1]: https://raw2.github.com/Shusshu/Android-RecurrencePicker/master/screenshots/recurrence-picker.png
