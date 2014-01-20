@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0.0-SNAPSHOT" package="be.billington.calendar.recurrencepicker">
+
+    <uses-sdk android:minSdkVersion="14" android:targetSdkVersion="19"/>
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application android:label="date time picker" >
+
+    </application>
+
+</manifest>

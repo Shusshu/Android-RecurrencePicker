@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="green">#5bba1e</color>
+
+
+
+    <!--Color's with Alpha-->
+    <color name="black_a70">#B2000000</color>
+    <color name="black_a60">#99000000</color>
+    <color name="black_a50">#7F000000</color>
+    <color name="black_a45">#72000000</color>
+    <color name="black_a40">#66000000</color>
+    <color name="black_a30">#4C000000</color>
+    <color name="black_a20">#33000000</color>
+    <color name="black_a10">#19000000</color>
+    <color name="red_a60">#99ff0000</color>
+    <color name="transparent">#00000000</color>
+    <color name="white_a60">#99ffffff</color>
+    <color name="white_a50">#7FFFFFFF</color>
+    <color name="dark_turquoise_a50">#8000aeef</color>
+    <color name="gray_overlay">#CC292e2c</color>
+    <color name="green_a40">#665bba1e</color>
+    <color name="green_a10">#1969bd45</color>
+
+
+</resources>
