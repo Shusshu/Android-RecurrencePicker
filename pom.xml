@@ -44,9 +44,9 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>com.google.android</groupId>
+				<groupId>android</groupId>
 				<artifactId>android</artifactId>
-				<version>4.1.1.4</version>
+				<version>${android.version}</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
