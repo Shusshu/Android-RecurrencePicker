@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 /* //device/apps/Calendar/assets/res/any/styles.xml
 **
 ** Copyright 2006, The Android Open Source Project
@@ -20,8 +19,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <style name="TextAppearance" parent="android:TextAppearance">
-    </style>
+    <style name="TextAppearance" parent="android:TextAppearance"></style>
 
     <style name="TextAppearance.EditEvent_Label">
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
@@ -57,8 +55,7 @@
         <item name="android:textSize">15sp</item>
     </style>
 
-    <style name="TextAppearance.Recurrence_SpinnerButton"
-        parent="android:style/Widget.Holo.Light.Spinner" />
+    <style name="TextAppearance.Recurrence_SpinnerButton" parent="android:style/Widget.Holo.Light.Spinner" />
 
     <style name="RecurrenceDayOfWeekStyle">
         <item name="android:layout_width">wrap_content</item>
@@ -78,5 +75,5 @@
         <item name="android:paddingRight">4dp</item>
         <item name="android:paddingTop">4dp</item>
         <item name="android:paddingBottom">4dp</item>
-        </style>
+    </style>
 </resources>

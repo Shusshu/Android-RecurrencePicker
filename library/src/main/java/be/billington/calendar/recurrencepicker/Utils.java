@@ -16,8 +16,6 @@
 
 package be.billington.calendar.recurrencepicker;
 
-import static android.provider.CalendarContract.EXTRA_EVENT_BEGIN_TIME;
-
 import android.accounts.Account;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -56,6 +54,8 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static android.provider.CalendarContract.EXTRA_EVENT_BEGIN_TIME;
 
 public class Utils {
     private static final boolean DEBUG = false;
@@ -129,54 +129,54 @@ public class Utils {
     private static final Pattern mWildcardPattern = Pattern.compile("^.*$");
 
     /**
-    * A coordinate must be of the following form for Google Maps to correctly use it:
-    * Latitude, Longitude
-    *
-    * This may be in decimal form:
-    * Latitude: {-90 to 90}
-    * Longitude: {-180 to 180}
-    *
-    * Or, in degrees, minutes, and seconds:
-    * Latitude: {-90 to 90}° {0 to 59}' {0 to 59}"
-    * Latitude: {-180 to 180}° {0 to 59}' {0 to 59}"
-    * + or - degrees may also be represented with N or n, S or s for latitude, and with
-    * E or e, W or w for longitude, where the direction may either precede or follow the value.
-    *
-    * Some examples of coordinates that will be accepted by the regex:
-    * 37.422081°, -122.084576°
-    * 37.422081,-122.084576
-    * +37°25'19.49", -122°5'4.47"
-    * 37°25'19.49"N, 122°5'4.47"W
-    * N 37° 25' 19.49",  W 122° 5' 4.47"
-    **/
+     * A coordinate must be of the following form for Google Maps to correctly use it:
+     * Latitude, Longitude
+     * <p/>
+     * This may be in decimal form:
+     * Latitude: {-90 to 90}
+     * Longitude: {-180 to 180}
+     * <p/>
+     * Or, in degrees, minutes, and seconds:
+     * Latitude: {-90 to 90}° {0 to 59}' {0 to 59}"
+     * Latitude: {-180 to 180}° {0 to 59}' {0 to 59}"
+     * + or - degrees may also be represented with N or n, S or s for latitude, and with
+     * E or e, W or w for longitude, where the direction may either precede or follow the value.
+     * <p/>
+     * Some examples of coordinates that will be accepted by the regex:
+     * 37.422081°, -122.084576°
+     * 37.422081,-122.084576
+     * +37°25'19.49", -122°5'4.47"
+     * 37°25'19.49"N, 122°5'4.47"W
+     * N 37° 25' 19.49",  W 122° 5' 4.47"
+     */
     private static final String COORD_DEGREES_LATITUDE =
             "([-+NnSs]" + "(\\s)*)?"
-            + "[1-9]?[0-9](\u00B0)" + "(\\s)*"
-            + "([1-5]?[0-9]\')?" + "(\\s)*"
-            + "([1-5]?[0-9]" + "(\\.[0-9]+)?\")?"
-            + "((\\s)*" + "[NnSs])?";
+                    + "[1-9]?[0-9](\u00B0)" + "(\\s)*"
+                    + "([1-5]?[0-9]\')?" + "(\\s)*"
+                    + "([1-5]?[0-9]" + "(\\.[0-9]+)?\")?"
+                    + "((\\s)*" + "[NnSs])?";
     private static final String COORD_DEGREES_LONGITUDE =
             "([-+EeWw]" + "(\\s)*)?"
-            + "(1)?[0-9]?[0-9](\u00B0)" + "(\\s)*"
-            + "([1-5]?[0-9]\')?" + "(\\s)*"
-            + "([1-5]?[0-9]" + "(\\.[0-9]+)?\")?"
-            + "((\\s)*" + "[EeWw])?";
+                    + "(1)?[0-9]?[0-9](\u00B0)" + "(\\s)*"
+                    + "([1-5]?[0-9]\')?" + "(\\s)*"
+                    + "([1-5]?[0-9]" + "(\\.[0-9]+)?\")?"
+                    + "((\\s)*" + "[EeWw])?";
     private static final String COORD_DEGREES_PATTERN =
             COORD_DEGREES_LATITUDE
-            + "(\\s)*" + "," + "(\\s)*"
-            + COORD_DEGREES_LONGITUDE;
+                    + "(\\s)*" + "," + "(\\s)*"
+                    + COORD_DEGREES_LONGITUDE;
     private static final String COORD_DECIMAL_LATITUDE =
             "[+-]?"
-            + "[1-9]?[0-9]" + "(\\.[0-9]+)"
-            + "(\u00B0)?";
+                    + "[1-9]?[0-9]" + "(\\.[0-9]+)"
+                    + "(\u00B0)?";
     private static final String COORD_DECIMAL_LONGITUDE =
             "[+-]?"
-            + "(1)?[0-9]?[0-9]" + "(\\.[0-9]+)"
-            + "(\u00B0)?";
+                    + "(1)?[0-9]?[0-9]" + "(\\.[0-9]+)"
+                    + "(\u00B0)?";
     private static final String COORD_DECIMAL_PATTERN =
             COORD_DECIMAL_LATITUDE
-            + "(\\s)*" + "," + "(\\s)*"
-            + COORD_DECIMAL_LONGITUDE;
+                    + "(\\s)*" + "," + "(\\s)*"
+                    + COORD_DECIMAL_LONGITUDE;
     private static final Pattern COORD_PATTERN =
             Pattern.compile(COORD_DEGREES_PATTERN + "|" + COORD_DECIMAL_PATTERN);
 
@@ -189,14 +189,14 @@ public class Utils {
      * Returns whether the SDK is the Jellybean release or later.
      */
     public static boolean isJellybeanOrLater() {
-      return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN;
     }
 
     /**
      * Returns whether the SDK is the KeyLimePie release or later.
      */
     public static boolean isKeyLimePieOrLater() {
-      return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
     }
 
 
@@ -222,7 +222,6 @@ public class Utils {
     }
 
 
-
     protected static void tardis() {
         mTardis = System.currentTimeMillis();
     }
@@ -239,7 +238,7 @@ public class Utils {
 
         String[] columnNames = cursor.getColumnNames();
         if (columnNames == null) {
-            columnNames = new String[] {};
+            columnNames = new String[]{};
         }
         MatrixCursor newCursor = new MatrixCursor(columnNames);
         int numColumns = cursor.getColumnCount();
@@ -258,7 +257,7 @@ public class Utils {
      * Compares two cursors to see if they contain the same data.
      *
      * @return Returns true of the cursors contain the same data and are not
-     *         null, false otherwise
+     * null, false otherwise
      */
     public static boolean compareCursors(Cursor c1, Cursor c2) {
         if (c1 == null || c2 == null) {
@@ -319,7 +318,7 @@ public class Utils {
      * ["a", "b", "c"] could be joined into "a,b,c"
      *
      * @param things the things to join together
-     * @param delim the delimiter to use
+     * @param delim  the delimiter to use
      * @return a string contained the things joined together
      */
     public static String join(List<?> things, String delim) {
@@ -339,14 +338,14 @@ public class Utils {
     /**
      * Returns the week since {@link android.text.format.Time#EPOCH_JULIAN_DAY} (Jan 1, 1970)
      * adjusted for first day of week.
-     *
+     * <p/>
      * This takes a julian day and the week start day and calculates which
      * week since {@link android.text.format.Time#EPOCH_JULIAN_DAY} that day occurs in, starting
      * at 0. *Do not* use this to compute the ISO week number for the year.
      *
-     * @param julianDay The julian day to calculate the week number for
+     * @param julianDay      The julian day to calculate the week number for
      * @param firstDayOfWeek Which week day is the first day of the week,
-     *          see {@link android.text.format.Time#SUNDAY}
+     *                       see {@link android.text.format.Time#SUNDAY}
      * @return Weeks since the epoch
      */
     public static int getWeeksSinceEpochFromJulianDay(int julianDay, int firstDayOfWeek) {
@@ -361,7 +360,7 @@ public class Utils {
     /**
      * Takes a number of weeks since the epoch and calculates the Julian day of
      * the Monday for that week.
-     *
+     * <p/>
      * This assumes that the week containing the {@link android.text.format.Time#EPOCH_JULIAN_DAY}
      * is considered week 0. It returns the Julian day for the Monday
      * {@code week} weeks after the Monday of the week containing the epoch.
@@ -425,11 +424,10 @@ public class Utils {
     }
 
 
-
     /**
      * Determine whether the column position is Saturday or not.
      *
-     * @param column the column position
+     * @param column         the column position
      * @param firstDayOfWeek the first day of week in android.text.format.Time
      * @return true if the column is Saturday position
      */
@@ -442,7 +440,7 @@ public class Utils {
     /**
      * Determine whether the column position is Sunday or not.
      *
-     * @param column the column position
+     * @param column         the column position
      * @param firstDayOfWeek the first day of week in android.text.format.Time
      * @return true if the column is Sunday position
      */
@@ -458,7 +456,7 @@ public class Utils {
      *
      * @param recycle Time object to recycle, otherwise null.
      * @param utcTime Time to convert, in UTC.
-     * @param tz The time zone to convert this time to.
+     * @param tz      The time zone to convert this time to.
      */
     public static long convertAlldayUtcToLocal(Time recycle, long utcTime, String tz) {
         if (recycle == null) {
@@ -485,7 +483,7 @@ public class Utils {
      *
      * @param recycle - Time object to recycle, otherwise null.
      * @param theTime - Time used for calculations (in UTC)
-     * @param tz The time zone to convert this time to.
+     * @param tz      The time zone to convert this time to.
      */
     public static long getNextMidnight(Time recycle, long theTime, String tz) {
         if (recycle == null) {
@@ -493,7 +491,7 @@ public class Utils {
         }
         recycle.timezone = tz;
         recycle.set(theTime);
-        recycle.monthDay ++;
+        recycle.monthDay++;
         recycle.hour = 0;
         recycle.minute = 0;
         recycle.second = 0;
@@ -506,8 +504,8 @@ public class Utils {
      * provided map with whether or not each name is repeated.
      *
      * @param isDuplicateName The map to put the duplicate check results in.
-     * @param cursor The query of calendars to check
-     * @param nameIndex The column of the query that contains the display name
+     * @param cursor          The query of calendars to check
+     * @param nameIndex       The column of the query that contains the display name
      */
     public static void checkForDuplicateNames(
             Map<String, Boolean> isDuplicateName, Cursor cursor, int nameIndex) {
@@ -534,7 +532,7 @@ public class Utils {
     }
 
     public static void setAllowWeekForDetailView(boolean allowWeekView) {
-        mAllowWeekForDetailView  = allowWeekView;
+        mAllowWeekForDetailView = allowWeekView;
     }
 
     public static boolean getAllowWeekForDetailView() {
@@ -600,7 +598,7 @@ public class Utils {
     // This processes all the segments, sorts them by color, and generates a
     // list of points to draw
     private static void weaveDNAStrands(LinkedList<DNASegment> segments, int firstJulianDay,
-            HashMap<Integer, DNAStrand> strands, int top, int bottom, int[] dayXs) {
+                                        HashMap<Integer, DNAStrand> strands, int top, int bottom, int[] dayXs) {
         // First, get rid of any colors that ended up with no segments
         Iterator<DNAStrand> strandIterator = strands.values().iterator();
         while (strandIterator.hasNext()) {
@@ -645,7 +643,7 @@ public class Utils {
      * height and the height of the top area.
      */
     private static int getPixelOffsetFromMinutes(int minute, int workDayHeight,
-            int remainderHeight) {
+                                                 int remainderHeight) {
         int y;
         if (minute < WORK_DAY_START_MINUTES) {
             y = minute * remainderHeight / WORK_DAY_START_MINUTES;
@@ -679,7 +677,7 @@ public class Utils {
      * and to allow refining the search.
      *
      * @param view The {@link android.widget.SearchView} to set up
-     * @param act The activity using the view
+     * @param act  The activity using the view
      */
     public static void setUpSearchView(SearchView view, Activity act) {
         SearchManager searchManager = (SearchManager) act.getSystemService(Context.SEARCH_SERVICE);
@@ -715,7 +713,7 @@ public class Utils {
      * from the event timezone.  Otherwise returns null.
      */
     public static String getDisplayedTimezone(long startMillis, String localTimezone,
-            String eventTimezone) {
+                                              String eventTimezone) {
         String tzDisplay = null;
         if (!TextUtils.equals(localTimezone, eventTimezone)) {
             // Figure out if this is in DST
@@ -755,7 +753,7 @@ public class Utils {
      * Returns TODAY or TOMORROW if applicable.  Otherwise returns NONE.
      */
     private static int isTodayOrTomorrow(Resources r, long dayMillis,
-            long currentMillis, long localGmtOffset) {
+                                         long currentMillis, long localGmtOffset) {
         int startDay = Time.getJulianDay(dayMillis, localGmtOffset);
         int currentDay = Time.getJulianDay(currentMillis, localGmtOffset);
 
@@ -772,15 +770,15 @@ public class Utils {
     /**
      * Create an intent for emailing attendees of an event.
      *
-     * @param resources The resources for translating strings.
-     * @param eventTitle The title of the event to use as the email subject.
-     * @param body The default text for the email body.
-     * @param toEmails The list of emails for the 'to' line.
-     * @param ccEmails The list of emails for the 'cc' line.
+     * @param resources    The resources for translating strings.
+     * @param eventTitle   The title of the event to use as the email subject.
+     * @param body         The default text for the email body.
+     * @param toEmails     The list of emails for the 'to' line.
+     * @param ccEmails     The list of emails for the 'cc' line.
      * @param ownerAccount The owner account to use as the email sender.
      */
     public static Intent createEmailAttendeesIntent(Resources resources, String eventTitle,
-            String body, List<String> toEmails, List<String> ccEmails, String ownerAccount) {
+                                                    String body, List<String> toEmails, List<String> ccEmails, String ownerAccount) {
         List<String> toList = toEmails;
         List<String> ccList = ccEmails;
         if (toEmails.size() <= 0) {
@@ -871,9 +869,9 @@ public class Utils {
 
     /**
      * Returns true if:
-     *   (1) the email is not a resource like a conference room or another calendar.
-     *       Catch most of these by filtering out suffix calendar.google.com.
-     *   (2) the email is not equal to the sync account to prevent mailing himself.
+     * (1) the email is not a resource like a conference room or another calendar.
+     * Catch most of these by filtering out suffix calendar.google.com.
+     * (2) the email is not equal to the sync account to prevent mailing himself.
      */
     public static boolean isEmailableFrom(String email, String syncAccountName) {
         return Utils.isValidEmail(email) && !email.equals(syncAccountName);
@@ -887,6 +885,7 @@ public class Utils {
             super();
             mCallBack = callback;
         }
+
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(Intent.ACTION_DATE_CHANGED) ||
@@ -934,13 +933,13 @@ public class Utils {
 
     /**
      * Checks the server for an updated list of Calendars (in the background).
-     *
+     * <p/>
      * If a Calendar is added on the web (and it is selected and not
      * hidden) then it will be added to the list of calendars on the phone
      * (when this finishes).  When a new calendar from the
      * web is added to the phone, then the events for that calendar are also
      * downloaded from the web.
-     *
+     * <p/>
      * This sync is done automatically in the background when the
      * SelectCalendars activity and fragment are started.
      *
@@ -958,10 +957,10 @@ public class Utils {
      * links. If lastDitchGeo is true, then if no links are found in the textview, the entire
      * string will be converted to a single geo link. Any spans that may have previously been
      * in the text will be cleared out.
-     * <p>
+     * <p/>
      * This is really just an enhanced version of Linkify.addLinks().
      *
-     * @param text - The string to search for links.
+     * @param text         - The string to search for links.
      * @param lastDitchGeo - If no links are found, turn the entire string into one geo link.
      * @return Spannable object containing the list of URL spans found.
      */
@@ -1064,8 +1063,8 @@ public class Utils {
          */
         int phoneCount = 0;
         for (int match = 0; match < phoneSequences.length / 2; match++) {
-            int start = phoneSequences[match*2];
-            int end = phoneSequences[match*2 + 1];
+            int start = phoneSequences[match * 2];
+            int end = phoneSequences[match * 2 + 1];
 
             if (spanWillOverlap(spanText, existingSpans, start, end)) {
                 continue;
@@ -1138,7 +1137,7 @@ public class Utils {
         int startPos = 0;
         int endPos = text.length() - NANP_MIN_DIGITS + 1;
         if (endPos < 0) {
-            return new int[] {};
+            return new int[]{};
         }
 
         /*
@@ -1199,8 +1198,8 @@ public class Utils {
          */
 
         // Check for "tel:" URI prefix.
-        if (text.length() > startPos+4
-                && text.subSequence(startPos, startPos+4).toString().equalsIgnoreCase("tel:")) {
+        if (text.length() > startPos + 4
+                && text.subSequence(startPos, startPos + 4).toString().equalsIgnoreCase("tel:")) {
             startPos += 4;
         }
 
@@ -1228,12 +1227,12 @@ public class Utils {
                     return -1;
                 }
             } else if (Character.isWhitespace(ch)) {
-                if ( (firstDigit == '1' && foundDigits == 4) ||
+                if ((firstDigit == '1' && foundDigits == 4) ||
                         (foundDigits == 3)) {
                     foundWhiteSpaceAfterAreaCode = true;
                 } else if (firstDigit == '1' && foundDigits == 1) {
                 } else if (foundWhiteSpaceAfterAreaCode
-                        && ( (firstDigit == '1' && (foundDigits == 7)) || (foundDigits == 6))) {
+                        && ((firstDigit == '1' && (foundDigits == 7)) || (foundDigits == 6))) {
                 } else {
                     break;
                 }
@@ -1258,7 +1257,7 @@ public class Utils {
      * Determines whether a new span at [start,end) will overlap with any existing span.
      */
     private static boolean spanWillOverlap(Spannable spanText, URLSpan[] spanList, int start,
-            int end) {
+                                           int end) {
         if (start == end) {
             // empty span, ignore
             return false;

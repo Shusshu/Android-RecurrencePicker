@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Copyright (C) 2013 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +16,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
     <!-- This outer linear layout protects the fixed dimensions of the dialog.
          The dimensions are not respected if this outer layout is not present. -->
@@ -26,12 +25,12 @@
         android:layout_height="@dimen/recurrence_picker_height"
         android:background="@color/recurrence_picker_background"
         android:orientation="vertical"
-        android:padding="0dp" >
+        android:padding="0dp">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dip"
-            android:layout_weight="1" >
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,7 +38,7 @@
                 android:descendantFocusability="beforeDescendants"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -79,14 +78,14 @@
                     android:paddingBottom="4dp"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:paddingTop="4dp" >
+                    android:paddingTop="4dp">
 
                     <LinearLayout
                         android:id="@+id/intervalGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="start"
-                        android:paddingLeft="4dp" >
+                        android:paddingLeft="4dp">
 
                         <TextView
                             android:id="@+id/intervalPreText"
@@ -106,8 +105,7 @@
                             android:paddingRight="4dp"
                             android:selectAllOnFocus="true"
                             android:textSize="15sp"
-                            android:singleLine="true" >
-                        </EditText>
+                            android:singleLine="true"></EditText>
 
                         <TextView
                             android:id="@+id/intervalPostText"
@@ -124,7 +122,7 @@
                         android:layout_marginRight="4dp"
                         android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
-                        android:orientation="horizontal" >
+                        android:orientation="horizontal">
 
                         <be.billington.calendar.recurrencepicker.WeekButton style="@style/RecurrenceDayOfWeekStyle" />
 
@@ -149,7 +147,7 @@
                         android:layout_marginRight="4dp"
                         android:gravity="center_horizontal"
                         android:orientation="horizontal"
-                        android:visibility="gone" >
+                        android:visibility="gone">
 
                         <be.billington.calendar.recurrencepicker.WeekButton style="@style/RecurrenceDayOfWeekStyle" />
 
@@ -166,7 +164,7 @@
                         android:id="@+id/monthGroup"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical" >
+                        android:orientation="vertical">
 
                         <RadioButton
                             android:id="@+id/repeatMonthlyByNthDayOfMonth"
@@ -188,7 +186,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="start"
                         android:orientation="horizontal"
-                        android:paddingLeft="0dp" >
+                        android:paddingLeft="0dp">
 
                         <Spinner
                             android:id="@+id/endSpinner"
@@ -262,7 +260,7 @@
             style="?android:attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/done"

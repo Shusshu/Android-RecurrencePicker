@@ -54,7 +54,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import be.billington.calendar.recurrencepicker.R;
 import com.fourmob.datetimepicker.date.DatePickerDialog;
 
 import java.text.DateFormatSymbols;
@@ -169,7 +168,7 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
         /**
          * Nth day of the week to repeat. Used when monthlyRepeat ==
          * MONTHLY_BY_NTH_DAY_OF_WEEK 0=undefined, -1=Last, 1=1st, 2=2nd, ..., 5=5th
-         *
+         * <p/>
          * We support 5th, just to handle backwards capabilities with old bug, but it
          * gets converted to -1 once edited.
          */
@@ -253,7 +252,9 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
             onChange(value);
         }
 
-        /** Override to be called after each key stroke */
+        /**
+         * Override to be called after each key stroke
+         */
         void onChange(int value) {
         }
 
@@ -272,7 +273,7 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
     private RecurrenceModel mModel = new RecurrenceModel();
     private Toast mToast;
 
-    private final int[] TIME_DAY_TO_CALENDAR_DAY = new int[] {
+    private final int[] TIME_DAY_TO_CALENDAR_DAY = new int[]{
             Calendar.SUNDAY,
             Calendar.MONDAY,
             Calendar.TUESDAY,
@@ -326,14 +327,18 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
     private String mEndDateLabel;
     private String mEndCountLabel;
 
-    /** Hold toggle buttons in the order per user's first day of week preference */
+    /**
+     * Hold toggle buttons in the order per user's first day of week preference
+     */
     private LinearLayout mWeekGroup;
     private LinearLayout mWeekGroup2;
     // Sun = 0
     private ToggleButton[] mWeekByDayButtons = new ToggleButton[7];
-    /** A double array of Strings to hold the 7x5 list of possible strings of the form:
-     *  "on every [Nth] [DAY_OF_WEEK]", e.g. "on every second Monday",
-     *  where [Nth] can be [first, second, third, fourth, last] */
+    /**
+     * A double array of Strings to hold the 7x5 list of possible strings of the form:
+     * "on every [Nth] [DAY_OF_WEEK]", e.g. "on every second Monday",
+     * where [Nth] can be [first, second, third, fourth, last]
+     */
     private String[][] mMonthRepeatByDayOfWeekStrs;
 
     private LinearLayout mMonthGroup;
@@ -413,7 +418,7 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
 
     // TODO don't lose data when getting data that our UI can't handle
     static private void copyEventRecurrenceToModel(final EventRecurrence er,
-            RecurrenceModel model) {
+                                                   RecurrenceModel model) {
         // Freq:
         switch (er.freq) {
             case EventRecurrence.DAILY:
@@ -514,7 +519,7 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
     }
 
     static private void copyModelToEventRecurrence(final RecurrenceModel model,
-            EventRecurrence er) {
+                                                   EventRecurrence er) {
         if (model.recurrenceState == RecurrenceModel.STATE_NO_RECURRENCE) {
             throw new IllegalStateException("There's no recurrence");
         }
@@ -614,7 +619,7 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         mRecurrence.wkst = EventRecurrence.timeDay2Day(Utils.getFirstDayOfWeek(getActivity()));
 
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
@@ -1028,10 +1033,10 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
         int markerStart = intervalString.indexOf(INTERVAL_COUNT_MARKER);
 
         if (markerStart != -1) {
-          int postTextStart = markerStart + INTERVAL_COUNT_MARKER.length();
-          mIntervalPostText.setText(intervalString.substring(postTextStart,
-                  intervalString.length()).trim());
-          mIntervalPreText.setText(intervalString.substring(0, markerStart).trim());
+            int postTextStart = markerStart + INTERVAL_COUNT_MARKER.length();
+            mIntervalPostText.setText(intervalString.substring(postTextStart,
+                    intervalString.length()).trim());
+            mIntervalPreText.setText(intervalString.substring(0, markerStart).trim());
         }
     }
 
@@ -1087,7 +1092,7 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
             mEndDateTextView.setVisibility(mModel.end == RecurrenceModel.END_BY_DATE ? View.VISIBLE
                     : View.GONE);
             mPostEndCount.setVisibility(
-                    mModel.end == RecurrenceModel.END_BY_COUNT  && !mHidePostEndCount?
+                    mModel.end == RecurrenceModel.END_BY_COUNT && !mHidePostEndCount ?
                             View.VISIBLE : View.GONE);
 
         }
@@ -1202,7 +1207,7 @@ public class RecurrencePickerDialog extends DialogFragment implements OnItemSele
          * @param objects
          */
         public EndSpinnerAdapter(Context context, ArrayList<CharSequence> strings,
-                int itemResourceId, int textResourceId) {
+                                 int itemResourceId, int textResourceId) {
             super(context, itemResourceId, strings);
             mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             mItemResourceId = itemResourceId;

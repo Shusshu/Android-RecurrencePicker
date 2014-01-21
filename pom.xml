@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
-  
-	<name>Android Date Time Picker - Parent</name>
-	<groupId>be.billington.calendar.recurrencepicker</groupId>
-	<artifactId>parent</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
-	<url>http://www.github.com/Shusshu/Android-RecurrencePicker</url>
+    <name>Android Date Time Picker - Parent</name>
+    <groupId>be.billington.calendar.recurrencepicker</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <url>http://www.github.com/Shusshu/Android-RecurrencePicker</url>
     <description>This library allows you to use the Google Calendar Recurrence picker</description>
     <developers>
         <developer>
@@ -36,40 +38,40 @@
         <support.v4.version>19.0.1</support.v4.version>
     </properties>
 
-	<modules>
-		<module>library</module>
-		<module>demo</module>
-	</modules>
+    <modules>
+        <module>library</module>
+        <module>demo</module>
+    </modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>android</groupId>
-				<artifactId>android</artifactId>
-				<version>${android.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.11</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>android</groupId>
+                <artifactId>android</artifactId>
+                <version>${android.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-scm-plugin</artifactId>
-				<version>1.7</version>
-				<configuration>
-					<connectionType>developerConnection</connectionType>
-				</configuration>
-			</plugin>
-		</plugins>
-		<pluginManagement>
-			<plugins>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.7</version>
+                <configuration>
+                    <connectionType>developerConnection</connectionType>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
                 <plugin>
                     <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                     <artifactId>android-maven-plugin</artifactId>
@@ -114,25 +116,26 @@
                     <artifactId>maven-javadoc-plugin</artifactId>
                     <version>2.9.1</version>
                 </plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
-	
-	<prerequisites>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <prerequisites>
         <maven>3.1.1</maven>
     </prerequisites>
 
-	<scm>
-		<connection>scm:git:git@github.com:Shusshu/Android-RecurrencePicker.git</connection>
-		<developerConnection>scm:git:git@github.com:Shusshu/Android-RecurrencePicker.git</developerConnection>
-		<tag>master</tag>
-		<url>https://github.com/Shusshu/Android-RecurrencePicker</url>
-	</scm>
+    <scm>
+        <connection>scm:git:git@github.com:Shusshu/Android-RecurrencePicker.git</connection>
+        <developerConnection>scm:git:git@github.com:Shusshu/Android-RecurrencePicker.git
+        </developerConnection>
+        <tag>master</tag>
+        <url>https://github.com/Shusshu/Android-RecurrencePicker</url>
+    </scm>
 
-	<issueManagement>
-		<system>github</system>
-		<url>https://github.com/Shusshu/Android-RecurrencePicker</url>
-	</issueManagement>
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/Shusshu/Android-RecurrencePicker</url>
+    </issueManagement>
 
     <licenses>
         <license>

@@ -46,39 +46,42 @@ public class EventRecurrence {
     public static final int FR = 0x00200000;
     public static final int SA = 0x00400000;
 
-    public Time      startDate;     // set by setStartDate(), not parse()
+    public Time startDate;     // set by setStartDate(), not parse()
 
-    public int       freq;          // SECONDLY, MINUTELY, etc.
-    public String    until;
-    public int       count;
-    public int       interval;
-    public int       wkst;          // SU, MO, TU, etc.
+    public int freq;          // SECONDLY, MINUTELY, etc.
+    public String until;
+    public int count;
+    public int interval;
+    public int wkst;          // SU, MO, TU, etc.
 
     /* lists with zero entries may be null references */
-    public int[]     bysecond;
-    public int       bysecondCount;
-    public int[]     byminute;
-    public int       byminuteCount;
-    public int[]     byhour;
-    public int       byhourCount;
-    public int[]     byday;
-    public int[]     bydayNum;
-    public int       bydayCount;
-    public int[]     bymonthday;
-    public int       bymonthdayCount;
-    public int[]     byyearday;
-    public int       byyeardayCount;
-    public int[]     byweekno;
-    public int       byweeknoCount;
-    public int[]     bymonth;
-    public int       bymonthCount;
-    public int[]     bysetpos;
-    public int       bysetposCount;
+    public int[] bysecond;
+    public int bysecondCount;
+    public int[] byminute;
+    public int byminuteCount;
+    public int[] byhour;
+    public int byhourCount;
+    public int[] byday;
+    public int[] bydayNum;
+    public int bydayCount;
+    public int[] bymonthday;
+    public int bymonthdayCount;
+    public int[] byyearday;
+    public int byyeardayCount;
+    public int[] byweekno;
+    public int byweeknoCount;
+    public int[] bymonth;
+    public int bymonthCount;
+    public int[] bysetpos;
+    public int bysetposCount;
 
-    /** maps a part string to a parser object */
-    private static HashMap<String,PartParser> sParsePartMap;
+    /**
+     * maps a part string to a parser object
+     */
+    private static HashMap<String, PartParser> sParsePartMap;
+
     static {
-        sParsePartMap = new HashMap<String,PartParser>();
+        sParsePartMap = new HashMap<String, PartParser>();
         sParsePartMap.put("FREQ", new ParseFreq());
         sParsePartMap.put("UNTIL", new ParseUntil());
         sParsePartMap.put("COUNT", new ParseCount());
@@ -111,8 +114,11 @@ public class EventRecurrence {
     private static final int PARSED_BYSETPOS = 1 << 12;
     private static final int PARSED_WKST = 1 << 13;
 
-    /** maps a FREQ value to an integer constant */
-    private static final HashMap<String,Integer> sParseFreqMap = new HashMap<String,Integer>();
+    /**
+     * maps a FREQ value to an integer constant
+     */
+    private static final HashMap<String, Integer> sParseFreqMap = new HashMap<String, Integer>();
+
     static {
         sParseFreqMap.put("SECONDLY", SECONDLY);
         sParseFreqMap.put("MINUTELY", MINUTELY);
@@ -123,8 +129,11 @@ public class EventRecurrence {
         sParseFreqMap.put("YEARLY", YEARLY);
     }
 
-    /** maps a two-character weekday string to an integer constant */
-    private static final HashMap<String,Integer> sParseWeekdayMap = new HashMap<String,Integer>();
+    /**
+     * maps a two-character weekday string to an integer constant
+     */
+    private static final HashMap<String, Integer> sParseWeekdayMap = new HashMap<String, Integer>();
+
     static {
         sParseWeekdayMap.put("SU", SU);
         sParseWeekdayMap.put("MO", MO);
@@ -135,13 +144,19 @@ public class EventRecurrence {
         sParseWeekdayMap.put("SA", SA);
     }
 
-    /** If set, allow lower-case recurrence rule strings.  Minor performance impact. */
+    /**
+     * If set, allow lower-case recurrence rule strings.  Minor performance impact.
+     */
     private static final boolean ALLOW_LOWER_CASE = true;
 
-    /** If set, validate the value of UNTIL parts.  Minor performance impact. */
+    /**
+     * If set, validate the value of UNTIL parts.  Minor performance impact.
+     */
     private static final boolean VALIDATE_UNTIL = false;
 
-    /** If set, require that only one of {UNTIL,COUNT} is present.  Breaks compat w/ old parser. */
+    /**
+     * If set, require that only one of {UNTIL,COUNT} is present.  Breaks compat w/ old parser.
+     */
     private static final boolean ONLY_ONE_UNTIL_COUNT = false;
 
 
@@ -165,10 +180,8 @@ public class EventRecurrence {
      * constants.  btw, I think we should switch to those here too, to
      * get rid of this function, if possible.
      */
-    public static int calendarDay2Day(int day)
-    {
-        switch (day)
-        {
+    public static int calendarDay2Day(int day) {
+        switch (day) {
             case Calendar.SUNDAY:
                 return SU;
             case Calendar.MONDAY:
@@ -188,10 +201,8 @@ public class EventRecurrence {
         }
     }
 
-    public static int timeDay2Day(int day)
-    {
-        switch (day)
-        {
+    public static int timeDay2Day(int day) {
+        switch (day) {
             case Time.SUNDAY:
                 return SU;
             case Time.MONDAY:
@@ -210,10 +221,9 @@ public class EventRecurrence {
                 throw new RuntimeException("bad day of week: " + day);
         }
     }
-    public static int day2TimeDay(int day)
-    {
-        switch (day)
-        {
+
+    public static int day2TimeDay(int day) {
+        switch (day) {
             case SU:
                 return Time.SUNDAY;
             case MO:
@@ -238,10 +248,8 @@ public class EventRecurrence {
      * constants.  btw, I think we should switch to those here too, to
      * get rid of this function, if possible.
      */
-    public static int day2CalendarDay(int day)
-    {
-        switch (day)
-        {
+    public static int day2CalendarDay(int day) {
+        switch (day) {
             case SU:
                 return Calendar.SUNDAY;
             case MO:
@@ -267,9 +275,8 @@ public class EventRecurrence {
      *
      * @param day one the internal constants SU, MO, etc.
      * @return the two-letter string for the day ("SU", "MO", etc.)
-     *
      * @throws IllegalArgumentException Thrown if the day argument is not one of
-     * the defined day constants.
+     *                                  the defined day constants.
      */
     private static String day2String(int day) {
         switch (day) {
@@ -293,12 +300,11 @@ public class EventRecurrence {
     }
 
     private static void appendNumbers(StringBuilder s, String label,
-                                      int count, int[] values)
-    {
+                                      int count, int[] values) {
         if (count > 0) {
             s.append(label);
             count--;
-            for (int i=0; i<count; i++) {
+            for (int i = 0; i < count; i++) {
                 s.append(values[i]);
                 s.append(",");
             }
@@ -306,8 +312,7 @@ public class EventRecurrence {
         }
     }
 
-    private void appendByDay(StringBuilder s, int i)
-    {
+    private void appendByDay(StringBuilder s, int i) {
         int n = this.bydayNum[i];
         if (n != 0) {
             s.append(n);
@@ -318,13 +323,11 @@ public class EventRecurrence {
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         StringBuilder s = new StringBuilder();
 
         s.append("FREQ=");
-        switch (this.freq)
-        {
+        switch (this.freq) {
             case SECONDLY:
                 s.append("SECONDLY");
                 break;
@@ -377,7 +380,7 @@ public class EventRecurrence {
         if (count > 0) {
             s.append(";BYDAY=");
             count--;
-            for (int i=0; i<count; i++) {
+            for (int i = 0; i < count; i++) {
                 appendByDay(s, i);
                 s.append(",");
             }
@@ -403,7 +406,7 @@ public class EventRecurrence {
             return false;
         }
 
-        for (int i = 0 ; i < count ; i++) {
+        for (int i = 0; i < count; i++) {
             int day = byday[i];
             if (day == SU || day == SA) {
                 return false;
@@ -416,10 +419,10 @@ public class EventRecurrence {
     /**
      * Determines whether this rule specifies a simple monthly rule by weekday, such as
      * "FREQ=MONTHLY;BYDAY=3TU" (the 3rd Tuesday of every month).
-     * <p>
+     * <p/>
      * Negative days, e.g. "FREQ=MONTHLY;BYDAY=-1TU" (the last Tuesday of every month),
      * will cause "false" to be returned.
-     * <p>
+     * <p/>
      * Rules that fire every week, such as "FREQ=MONTHLY;BYDAY=TU" (every Tuesday of every
      * month) will cause "false" to be returned.  (Note these are usually expressed as
      * WEEKLY rules, and hence are uncommon.)
@@ -444,12 +447,12 @@ public class EventRecurrence {
 
     /**
      * Determines whether two integer arrays contain identical elements.
-     * <p>
+     * <p/>
      * The native implementation over-allocated the arrays (and may have stuff left over from
      * a previous run), so we can't just check the arrays -- the separately-maintained count
      * field also matters.  We assume that a null array will have a count of zero, and that the
      * array can hold as many elements as the associated count indicates.
-     * <p>
+     * <p/>
      * TODO: replace this with Arrays.equals() when the old parser goes away.
      */
     private static boolean arraysEqual(int[] array1, int count1, int[] array2, int count2) {
@@ -475,7 +478,7 @@ public class EventRecurrence {
         }
 
         EventRecurrence er = (EventRecurrence) obj;
-        return  (startDate == null ?
+        return (startDate == null ?
                 er.startDate == null : Time.compare(startDate, er.startDate) == 0) &&
                 freq == er.freq &&
                 (until == null ? er.until == null : until.equals(er.until)) &&
@@ -494,19 +497,20 @@ public class EventRecurrence {
                 arraysEqual(bysetpos, bysetposCount, er.bysetpos, er.bysetposCount);
     }
 
-    @Override public int hashCode() {
+    @Override
+    public int hashCode() {
         // We overrode equals, so we must override hashCode().  Nobody seems to need this though.
         throw new UnsupportedOperationException();
     }
 
     /**
      * Resets parser-modified fields to their initial state.  Does not alter startDate.
-     * <p>
+     * <p/>
      * The original parser always set all of the "count" fields, "wkst", and "until",
      * essentially allowing the same object to be used multiple times by calling parse().
      * It's unclear whether this behavior was intentional.  For now, be paranoid and
      * preserve the existing behavior by resetting the fields.
-     * <p>
+     * <p/>
      * We don't need to touch the integer arrays; they will either be ignored or
      * overwritten.  The "startDate" field is not set by the parser, so we ignore it here.
      */
@@ -662,7 +666,7 @@ public class EventRecurrence {
          * Parses a single part.
          *
          * @param value The right-hand-side of the part.
-         * @param er The EventRecurrence into which the result is stored.
+         * @param er    The EventRecurrence into which the result is stored.
          * @return A bit value indicating which part was parsed.
          */
         public abstract int parsePart(String value, EventRecurrence er);
@@ -670,9 +674,9 @@ public class EventRecurrence {
         /**
          * Parses an integer, with range-checking.
          *
-         * @param str The string to parse.
-         * @param minVal Minimum allowed value.
-         * @param maxVal Maximum allowed value.
+         * @param str       The string to parse.
+         * @param minVal    Minimum allowed value.
+         * @param maxVal    Maximum allowed value.
          * @param allowZero Is 0 allowed?
          * @return The parsed value.
          */
@@ -695,9 +699,9 @@ public class EventRecurrence {
         /**
          * Parses a comma-separated list of integers, with range-checking.
          *
-         * @param listStr The string to parse.
-         * @param minVal Minimum allowed value.
-         * @param maxVal Maximum allowed value.
+         * @param listStr   The string to parse.
+         * @param minVal    Minimum allowed value.
+         * @param maxVal    Maximum allowed value.
          * @param allowZero Is 0 allowed?
          * @return A new array with values, sized to hold the exact number of elements.
          */
@@ -721,9 +725,12 @@ public class EventRecurrence {
         }
     }
 
-    /** parses FREQ={SECONDLY,MINUTELY,...} */
+    /**
+     * parses FREQ={SECONDLY,MINUTELY,...}
+     */
     private static class ParseFreq extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             Integer freq = sParseFreqMap.get(value);
             if (freq == null) {
                 throw new InvalidFormatException("Invalid FREQ value: " + value);
@@ -732,9 +739,13 @@ public class EventRecurrence {
             return PARSED_FREQ;
         }
     }
-    /** parses UNTIL=enddate, e.g. "19970829T021400" */
+
+    /**
+     * parses UNTIL=enddate, e.g. "19970829T021400"
+     */
     private static class ParseUntil extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             if (VALIDATE_UNTIL) {
                 try {
                     // Parse the time to validate it.  The result isn't retained.
@@ -748,9 +759,13 @@ public class EventRecurrence {
             return PARSED_UNTIL;
         }
     }
-    /** parses COUNT=[non-negative-integer] */
+
+    /**
+     * parses COUNT=[non-negative-integer]
+     */
     private static class ParseCount extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             er.count = parseIntRange(value, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
             if (er.count < 0) {
                 Log.d(TAG, "Invalid Count. Forcing COUNT to 1 from " + value);
@@ -759,9 +774,13 @@ public class EventRecurrence {
             return PARSED_COUNT;
         }
     }
-    /** parses INTERVAL=[non-negative-integer] */
+
+    /**
+     * parses INTERVAL=[non-negative-integer]
+     */
     private static class ParseInterval extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             er.interval = parseIntRange(value, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
             if (er.interval < 1) {
                 Log.d(TAG, "Invalid Interval. Forcing INTERVAL to 1 from " + value);
@@ -770,36 +789,52 @@ public class EventRecurrence {
             return PARSED_INTERVAL;
         }
     }
-    /** parses BYSECOND=byseclist */
+
+    /**
+     * parses BYSECOND=byseclist
+     */
     private static class ParseBySecond extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             int[] bysecond = parseNumberList(value, 0, 59, true);
             er.bysecond = bysecond;
             er.bysecondCount = bysecond.length;
             return PARSED_BYSECOND;
         }
     }
-    /** parses BYMINUTE=byminlist */
+
+    /**
+     * parses BYMINUTE=byminlist
+     */
     private static class ParseByMinute extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             int[] byminute = parseNumberList(value, 0, 59, true);
             er.byminute = byminute;
             er.byminuteCount = byminute.length;
             return PARSED_BYMINUTE;
         }
     }
-    /** parses BYHOUR=byhrlist */
+
+    /**
+     * parses BYHOUR=byhrlist
+     */
     private static class ParseByHour extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             int[] byhour = parseNumberList(value, 0, 23, true);
             er.byhour = byhour;
             er.byhourCount = byhour.length;
             return PARSED_BYHOUR;
         }
     }
-    /** parses BYDAY=bywdaylist, e.g. "1SU,-1SU" */
+
+    /**
+     * parses BYDAY=bywdaylist, e.g. "1SU,-1SU"
+     */
     private static class ParseByDay extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             int[] byday;
             int[] bydayNum;
             int bydayCount;
@@ -826,7 +861,9 @@ public class EventRecurrence {
             return PARSED_BYDAY;
         }
 
-        /** parses [int]weekday, putting the pieces into parallel array entries */
+        /**
+         * parses [int]weekday, putting the pieces into parallel array entries
+         */
         private static void parseWday(String str, int[] byday, int[] bydayNum, int index) {
             int wdayStrStart = str.length() - 2;
             String wdayStr;
@@ -848,54 +885,78 @@ public class EventRecurrence {
             byday[index] = wday;
         }
     }
-    /** parses BYMONTHDAY=bymodaylist */
+
+    /**
+     * parses BYMONTHDAY=bymodaylist
+     */
     private static class ParseByMonthDay extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             int[] bymonthday = parseNumberList(value, -31, 31, false);
             er.bymonthday = bymonthday;
             er.bymonthdayCount = bymonthday.length;
             return PARSED_BYMONTHDAY;
         }
     }
-    /** parses BYYEARDAY=byyrdaylist */
+
+    /**
+     * parses BYYEARDAY=byyrdaylist
+     */
     private static class ParseByYearDay extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             int[] byyearday = parseNumberList(value, -366, 366, false);
             er.byyearday = byyearday;
             er.byyeardayCount = byyearday.length;
             return PARSED_BYYEARDAY;
         }
     }
-    /** parses BYWEEKNO=bywknolist */
+
+    /**
+     * parses BYWEEKNO=bywknolist
+     */
     private static class ParseByWeekNo extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             int[] byweekno = parseNumberList(value, -53, 53, false);
             er.byweekno = byweekno;
             er.byweeknoCount = byweekno.length;
             return PARSED_BYWEEKNO;
         }
     }
-    /** parses BYMONTH=bymolist */
+
+    /**
+     * parses BYMONTH=bymolist
+     */
     private static class ParseByMonth extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             int[] bymonth = parseNumberList(value, 1, 12, false);
             er.bymonth = bymonth;
             er.bymonthCount = bymonth.length;
             return PARSED_BYMONTH;
         }
     }
-    /** parses BYSETPOS=bysplist */
+
+    /**
+     * parses BYSETPOS=bysplist
+     */
     private static class ParseBySetPos extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             int[] bysetpos = parseNumberList(value, Integer.MIN_VALUE, Integer.MAX_VALUE, true);
             er.bysetpos = bysetpos;
             er.bysetposCount = bysetpos.length;
             return PARSED_BYSETPOS;
         }
     }
-    /** parses WKST={SU,MO,...} */
+
+    /**
+     * parses WKST={SU,MO,...}
+     */
     private static class ParseWkst extends PartParser {
-        @Override public int parsePart(String value, EventRecurrence er) {
+        @Override
+        public int parsePart(String value, EventRecurrence er) {
             Integer wkst = sParseWeekdayMap.get(value);
             if (wkst == null) {
                 throw new InvalidFormatException("Invalid WKST value: " + value);
