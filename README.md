@@ -30,11 +30,20 @@ Gradle:
 	compile 'be.billington.calendar.recurrencepicker:library:1.0.0'
 
 
+Credits
+=======
+
+This library uses Google Calendar Date & Time pickers from [Laurent Flavien's library][2] 
+
+The original source code of the recurrence picker can be found [here][3]
+
 License
 =======
 
-    [The Apache Software License, Version 2.0][2]
+    [The Apache Software License, Version 2.0][4]
 
 
  [1]: https://raw2.github.com/Shusshu/Android-RecurrencePicker/master/screenshots/recurrence-picker.png
- [2]: http://www.apache.org/licenses/LICENSE-2.0.txt
+ [2]: https://github.com/flavienlaurent/datetimepicker
+ [3]: https://github.com/android/platform_packages_apps_calendar/tree/master/src/com/android/calendar
+ [4]: http://www.apache.org/licenses/LICENSE-2.0.txt
