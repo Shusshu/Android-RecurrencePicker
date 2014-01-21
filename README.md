@@ -33,6 +33,8 @@ Gradle:
 License
 =======
 
-    Beerware
+    [The Apache Software License, Version 2.0][2]
+
 
  [1]: https://raw2.github.com/Shusshu/Android-RecurrencePicker/master/screenshots/recurrence-picker.png
+ [2]: http://www.apache.org/licenses/LICENSE-2.0.txt
