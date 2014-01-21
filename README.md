@@ -33,7 +33,7 @@ Gradle:
 Credits
 =======
 
- This library uses Google Calendar Date & Time pickers from [Laurent Flavien's library][2] 
+ This library uses Google Calendar Date & Time pickers from [Laurent Flavien & Edison Wang's library][2] 
 
  The original source code of the recurrence picker can be found [here][3]
 
