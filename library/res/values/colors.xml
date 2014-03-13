@@ -21,6 +21,9 @@
     <color name="pressed">#330066ff</color>
 
     <color name="selection">@android:color/holo_blue_light</color>
+    <color name="done_text_color_disabled">#ffcccccc</color>
+    <color name="done_text_color_normal">#ff333333</color>
+
 
     <color name="today_highlight_color">#0033b5e5</color>
 
