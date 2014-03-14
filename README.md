@@ -20,14 +20,14 @@ Maven:
     <dependency>
       <groupId>be.billington.calendar.recurrencepicker</groupId>
       <artifactId>library</artifactId>
-      <version>1.0.0</version>
-	  <type>aar</type>
+      <version>1.0.2</version>
+      <type>aar</type>
     </dependency>
 	
 	
 Gradle:
 
-	compile 'be.billington.calendar.recurrencepicker:library:1.0.0'
+	compile 'be.billington.calendar.recurrencepicker:library:1.0.2'
 
 
 Credits
