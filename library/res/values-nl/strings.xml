@@ -18,6 +18,30 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="email_picker_label" msgid="4808253965057791781">"E-mail met"</string>
     <string name="save_label" msgid="2133599104834432589">"Gereed"</string>
+
+    <string name="snooze_all_label" msgid="4994488813124409077">"5 min. uitstellen"</string>
+    <string name="dismiss_all_label" msgid="1834400025868091301">"Allemaal verwijderen"</string>
+    <string name="snooze_label" msgid="1515893621063224666">"Snooze"</string>
+    <string name="does_not_repeat" msgid="1877681921029738999">"Eenmalige afspraak"</string>
+    <string name="endByDate" msgid="7654221304929538201">"; tot <xliff:g id="DATE">%s</xliff:g>"</string>
+    <plurals name="endByCount">
+        <item quantity="one" msgid="3727754565990691816">"; één keer"</item>
+        <item quantity="other" msgid="4855496837834652446">"; <xliff:g id="NUMBER">%d</xliff:g> keer"</item>
+    </plurals>
+    <plurals name="daily">
+        <item quantity="one" msgid="5169052946627480942">"Dagelijks"</item>
+        <item quantity="other" msgid="5455230727715859264">"Elke <xliff:g id="NUMBER">%d</xliff:g> dagen"</item>
+    </plurals>
+    <string name="every_weekday" msgid="5896574838353902978">"Elke werkdag (ma - vr)"</string>
+    <plurals name="weekly">
+        <item quantity="one" msgid="5463021019301453273">"Wekelijks op <xliff:g id="DAYS_OF_WEEK">%2$s</xliff:g>"</item>
+        <item quantity="other" msgid="2857390143157377867">"Elke <xliff:g id="NUMBER">%1$d</xliff:g> weken op <xliff:g id="DAYS_OF_WEEK">%2$s</xliff:g>"</item>
+    </plurals>
+    <string name="monthly" msgid="4587116285383048586">"Maandelijks"</string>
+    <string name="yearly_plain" msgid="3652692085322162449">"Jaarlijks"</string>
+    <string name="monthly_on_day" msgid="5370155265278821156">"Maandelijks (op dag <xliff:g id="DAY_OF_MONTH">%s</xliff:g>)"</string>
+    <string name="yearly" msgid="8576208380302949002">"Jaarlijks (op <xliff:g id="DATES">%s</xliff:g>)"</string>
+
     <string name="recurrence_dialog_title" msgid="8093909645557717483">"Herhalen"</string>
     <string name="recurrence_dialog_title_never" msgid="2679396029776590130">"Wordt nooit herhaald"</string>
   <plurals name="recurrence_interval_daily">
