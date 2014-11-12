@@ -43,7 +43,7 @@ License
  [The Apache Software License, Version 2.0][4]
 
 
- [1]: https://raw2.github.com/Shusshu/Android-RecurrencePicker/master/screenshots/recurrence-picker.png
+ [1]: https://github.com/Shusshu/Android-RecurrencePicker/blob/master/screenshots/recurrence-picker.png
  [2]: https://github.com/flavienlaurent/datetimepicker
  [3]: https://github.com/android/platform_packages_apps_calendar/tree/master/src/com/android/calendar
  [4]: http://www.apache.org/licenses/LICENSE-2.0.txt
