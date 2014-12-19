@@ -28,12 +28,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
 
-        <android.version>4.4.2_r2</android.version>
-        <sdk.platform>19</sdk.platform>
-
-        <support.v4.groupId>com.android.support</support.v4.groupId>
-        <support.v4.artifactId>support-v4</support.v4.artifactId>
-        <support.v4.version>19.0.1</support.v4.version>
+        <android.version>5.0_r1</android.version>
+        <sdk.platform>21</sdk.platform>
     </properties>
 
     <modules>
@@ -71,9 +67,9 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                    <groupId>com.simpligility.maven.plugins</groupId>
                     <artifactId>android-maven-plugin</artifactId>
-                    <version>3.9.0-rc.1</version>
+                    <version>4.0.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

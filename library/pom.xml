@@ -27,23 +27,31 @@
         <dependency>
             <groupId>com.android.support</groupId>
             <artifactId>support-v4</artifactId>
-            <version>19.0.1</version>
+            <version>21.0.3</version>
+            <type>aar</type>
         </dependency>
         <dependency>
             <groupId>com.github.flavienlaurent.datetimepicker</groupId>
             <artifactId>library</artifactId>
-            <version>0.0.1</version>
+            <version>0.0.2</version>
             <type>aar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.android.support</groupId>
+                    <artifactId>support-v4</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+                    <includeLibsJarsFromAar>true</includeLibsJarsFromAar>
                     <sdk>
                         <platform>${sdk.platform}</platform>
                     </sdk>

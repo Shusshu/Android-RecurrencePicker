@@ -35,10 +35,11 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <groupId>com.simpligility.maven.plugins</groupId>
                 <artifactId>android-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+                    <includeLibsJarsFromAar>true</includeLibsJarsFromAar>
                     <sdk>
                         <platform>${sdk.platform}</platform>
                     </sdk>
