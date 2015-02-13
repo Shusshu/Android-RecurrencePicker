@@ -5,7 +5,7 @@
     <parent>
         <groupId>be.billington.calendar.recurrencepicker</groupId>
         <artifactId>parent</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2-SNAPSHOT</version>
     </parent>
 
     <name>Android Date Time Picker - Demo</name>
