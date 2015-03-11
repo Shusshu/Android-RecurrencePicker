@@ -14,20 +14,21 @@ Usage
 
 Maven / Gradle
 --------------
+![Maven Central](https://maven-badges.herokuapp.com/maven-central/be.billington.calendar.recurrencepicker/library/badge.png?style=flat)
 
 Maven:
 
     <dependency>
       <groupId>be.billington.calendar.recurrencepicker</groupId>
       <artifactId>library</artifactId>
-      <version>1.1.0</version>
+      <version>1.1.1</version>
       <type>aar</type>
     </dependency>
 	
 	
 Gradle:
 
-	compile 'be.billington.calendar.recurrencepicker:library:1.1.0'
+	compile 'be.billington.calendar.recurrencepicker:library:1.1.1'
 
 
 Credits
